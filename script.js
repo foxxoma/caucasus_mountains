@@ -19,9 +19,10 @@ north.moveTo(x, y);
 north.lineTo(x, y - 60);
 north.stroke();
 
-
-
-
+north.beginPath();
+north.fillStyle = '#0000ff'	
+north.arc(x, y-60 , 5, 0, Math.PI *2);
+north.fill();
 
 
 const P = document.getElementById('p');
@@ -41,6 +42,13 @@ if (window.DeviceOrientationEvent) {
 		north.moveTo(x, y);
 		north.lineTo(x - Math.sin(a)*60, y - Math.cos(a)*60);
 		north.stroke();
+
+		north.beginPath();
+		north.fillStyle = '#0000ff'	
+		north.arc(x - Math.sin(a)*60, y - Math.cos(a)*60, 5, 0, Math.PI *2);
+		north.fill();
+
+		
 
   		
     });
