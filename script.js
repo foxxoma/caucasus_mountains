@@ -28,17 +28,23 @@ north.stroke();
 const P = document.getElementById('p');
 if (window.DeviceOrientationEvent) {
     window.addEventListener("deviceorientation", function(event) { 
-
+    	north.strokeStyle = '#fff';
         var rotateDegrees = event.alpha; 
-       
-
        	P.textContent = rotateDegrees;
-  		
+  		rotateArrow();
     });
 }
 
-/*
-function rotateArrow {
 
 
-}*/
+function rotateArrow() {
+
+var a = -1 * rotateDegrees * (Math.PI/180);
+
+north.beginPath();
+north.strokeStyle = '#0000ff';
+north.moveTo(x, y);
+north.lineTo(x - Math.sin(a)*60, y - Math.cos(a)*60);
+north.stroke();
+
+}
