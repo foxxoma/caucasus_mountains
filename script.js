@@ -32,6 +32,8 @@ if (window.DeviceOrientationEvent) {
         rotateDegrees = event.alpha; 
        	P.textContent = rotateDegrees;
        	
+       	north.strokeStyle = '#ffffff';
+
        	let a = (-1 *  event.alpha) * (Math.PI/180);
        	north.beginPath();
 		north.strokeStyle = '#0000ff';
