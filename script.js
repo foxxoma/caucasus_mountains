@@ -30,9 +30,20 @@ ctxN.stroke();
 
 // arrowS
 
-ctxN.beginPath();
+ctxS.beginPath();
 ctxS.strokeStyle = '#ff0000';
 ctxS.moveTo(x, y);
 ctxS.lineTo(x, y + 60);
 ctxS.stroke();
 
+/*if (window.DeviceOrientationEvent) {
+    window.addEventListener("deviceorientation", function(event) { 
+
+        var rotateDegrees = event.alpha; 
+
+  		
+    });
+}*/
+
+
+   
