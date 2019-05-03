@@ -36,14 +36,18 @@ ctxS.moveTo(x, y);
 ctxS.lineTo(x, y + 60);
 ctxS.stroke();
 
-/*if (window.DeviceOrientationEvent) {
+
+const P = document.getElementById('p');
+if (window.DeviceOrientationEvent) {
     window.addEventListener("deviceorientation", function(event) { 
 
         var rotateDegrees = event.alpha; 
+       
 
+       	P.textContent = rotateDegrees;
   		
     });
-}*/
+}
 
 
    
