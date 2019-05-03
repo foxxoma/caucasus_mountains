@@ -31,8 +31,9 @@ if (window.DeviceOrientationEvent) {
     	
         rotateDegrees = event.alpha; 
        	P.textContent = rotateDegrees;
-       	
-       	north.strokeStyle = '#ffffff';
+
+       	north.clearRect(0, 0, canv.width, canv.height);
+       
 
        	let a = (-1 *  event.alpha) * (Math.PI/180);
        	north.beginPath();
