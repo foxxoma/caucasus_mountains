@@ -20,26 +20,26 @@ north.lineTo(x, y - 60);
 north.stroke();
 
 
+let rotateDegrees = 60;
 
-
-
+rotateArrow();
 
 
 const P = document.getElementById('p');
 if (window.DeviceOrientationEvent) {
     window.addEventListener("deviceorientation", function(event) { 
-    	north.strokeStyle = '#fff';
-        var rotateDegrees = event.alpha; 
+    	
+        rotateDegrees = event.alpha; 
        	P.textContent = rotateDegrees;
-  		rotateArrow();
+  		rotateArrow(rotateDegrees);
     });
 }
 
 
 
-function rotateArrow() {
+function rotateArrow(rotateD) {
 
-var a = -1 * rotateDegrees * (Math.PI/180);
+var a = (-1 * rotateD) * (Math.PI/180);
 
 north.beginPath();
 north.strokeStyle = '#0000ff';
