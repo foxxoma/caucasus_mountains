@@ -26,13 +26,13 @@ const P = document.getElementById('p');
 if (window.DeviceOrientationEvent) {
     window.addEventListener("deviceorientation", function(event) { 
     	
-        rotateDegrees = event.webkitCompassHeading; 
+        rotateDegrees = event.alpha; 
        	P.textContent = rotateDegrees;
 
        	north.clearRect(0, 0, canv.width, canv.height);
        
 
-       	let a = (-1 *  event.webkitCompassHeading) * (Math.PI/180);
+       	let a = (-1 *  event.alpha) * (Math.PI/180);
        	north.beginPath();
 		north.strokeStyle = '#0000ff';
 		north.moveTo(x, y);
