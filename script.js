@@ -24,9 +24,10 @@ north.stroke();
 const P = document.getElementById('p');
 
 if (window.DeviceOrientationEvent) {
-    window.addEventListener("deviceorientation", function(event) { 
-    	
-        rotateDegrees = event.webkitCompassHeading; 
+    window.addEventListener("deviceorientation", function(event) {
+
+    	if(event.webkitCompassHeading) {
+      rotateDegrees = event.webkitCompassHeading; 
        	P.textContent = rotateDegrees;
 
        	north.clearRect(0, 0, canv.width, canv.height);
@@ -43,6 +44,28 @@ if (window.DeviceOrientationEvent) {
 		north.fillStyle = '#0000ff'	
 		north.arc(x - Math.sin(a)*60, y - Math.cos(a)*60, 5, 0, Math.PI *2);
 		north.fill();
+      
+    }
+    else {
+    	rotateDegrees = event.alpha; 
+       	P.textContent = rotateDegrees;
+
+       	north.clearRect(0, 0, canv.width, canv.height);
+       
+
+       	let a = (-1 *  event.alpha) * (Math.PI/180);
+       	north.beginPath();
+		north.strokeStyle = '#0000ff';
+		north.moveTo(x, y);
+		north.lineTo(x - Math.sin(a)*60, y - Math.cos(a)*60);
+		north.stroke();
+
+		north.beginPath();
+		north.fillStyle = '#0000ff'	
+		north.arc(x - Math.sin(a)*60, y - Math.cos(a)*60, 5, 0, Math.PI *2);
+		north.fill();
+    }
+        
 
 		
 
