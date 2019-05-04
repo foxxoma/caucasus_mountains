@@ -24,7 +24,9 @@ north.stroke();
 const P = document.getElementById('p');
 
 if (window.DeviceOrientationEvent) {
-    window.addEventListener("deviceorientation", function(event) { 
+    window.addEventListener("deviceorientation", function(event) {
+
+    if(event.absolute == true){
     	
         rotateDegrees = event.alpha; 
        	P.textContent = rotateDegrees;
@@ -44,7 +46,8 @@ if (window.DeviceOrientationEvent) {
 		north.arc(x - Math.sin(a)*60, y - Math.cos(a)*60, 5, 0, Math.PI *2);
 		north.fill();
 
-		
+		}
+
 
   		
     });
