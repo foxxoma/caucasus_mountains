@@ -11,55 +11,29 @@ y = canv.height * (85 / 100);
 
 
 
+// arrowN
 
-function compassHeading(alpha, beta, gamma) {
+north.beginPath();
+north.strokeStyle = '#0000ff';
+north.moveTo(x, y);
+north.lineTo(x, y - 60);
+north.stroke();
 
-  // Convert degrees to radians
-  var alphaRad = alpha * (Math.PI / 180);
-  var betaRad = beta * (Math.PI / 180);
-  var gammaRad = gamma * (Math.PI / 180);
 
-  // Calculate equation components
-  var cA = Math.cos(alphaRad);
-  var sA = Math.sin(alphaRad);
-  var cB = Math.cos(betaRad);
-  var sB = Math.sin(betaRad);
-  var cG = Math.cos(gammaRad);
-  var sG = Math.sin(gammaRad);
 
-  // Calculate A, B, C rotation components
-  var rA = - cA * sG - sA * sB * cG;
-  var rB = - sA * sG + cA * sB * cG;
-  var rC = - cB * cG;
+const P = document.getElementById('p');
 
-  // Calculate compass heading
-  var compassHeading = Math.atan(rA / rB);
+if (window.DeviceOrientationEvent) {
+    window.addEventListener("deviceorientation", function(event) { 
+    	
+        rotateDegrees = event.alpha; 
+       	P.textContent = rotateDegrees;
 
-  // Convert from half unit circle to whole unit circle
-  if(rB < 0) {
-    compassHeading += Math.PI;
-  }else if(rA < 0) {
-    compassHeading += 2 * Math.PI;
-  }
+       	north.clearRect(0, 0, canv.width, canv.height);
+       
 
-  // Convert radians to degrees
-  compassHeading *= 180 / Math.PI;
-
-  return compassHeading;
-
-}
-
-window.addEventListener('deviceorientation', function(evt) {
-
-  var heading = null;
-
-  if(evt.absolute === true && evt.alpha !== null) {
-    heading = compassHeading(evt.alpha, evt.beta, evt.gamma);
-  }
-
-  // Do something with 'heading'...
-  		let a = (-1 * heading ) * (Math.PI/180);
-  		north.beginPath();
+       	let a = (-1 *  event.alpha) * (Math.PI/180);
+       	north.beginPath();
 		north.strokeStyle = '#0000ff';
 		north.moveTo(x, y);
 		north.lineTo(x - Math.sin(a)*60, y - Math.cos(a)*60);
@@ -70,4 +44,11 @@ window.addEventListener('deviceorientation', function(evt) {
 		north.arc(x - Math.sin(a)*60, y - Math.cos(a)*60, 5, 0, Math.PI *2);
 		north.fill();
 
-}, false);
+		
+
+  		
+    });
+}
+
+
+
