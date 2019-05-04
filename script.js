@@ -48,7 +48,7 @@ if (window.DeviceOrientationEvent) {
 
 		}
 		else{
-		P.textContent = "true";
+		P.textContent = "f";
 		}
   		
     });
