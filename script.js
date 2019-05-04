@@ -29,7 +29,7 @@ if (window.DeviceOrientationEvent) {
     if(event.absolute == true){
     	
         rotateDegrees = event.alpha; 
-       	P.textContent = rotateDegrees;
+       	P.textContent = "true";
 
        	north.clearRect(0, 0, canv.width, canv.height);
        
@@ -47,8 +47,9 @@ if (window.DeviceOrientationEvent) {
 		north.fill();
 
 		}
-
-
+		else{
+		P.textContent = "true";
+		}
   		
     });
 }
