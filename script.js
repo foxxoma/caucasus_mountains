@@ -36,6 +36,14 @@ const P = document.getElementById('p');
 
        	let a = (-1 *  event.alpha) * (Math.PI/180);
        
+       	north.beginPath();
+		north.strokeStyle = '#ff0000';
+		north.moveTo(x,  y - 1);
+		north.lineTo(x + 1, y);
+		north.lineTo(x, y+1);
+		north.lineTo(x-1, y-1);
+		north.lineTo(x, y-1);
+		north.stroke();
 
 		north.beginPath();
 		north.fillStyle = '#0000ff'	
@@ -56,7 +64,15 @@ const P = document.getElementById('p');
        	north.clearRect(0, 0, canv.width, canv.height);
        
 
-       	
+       	let a = (-1 *  event.alpha) * (Math.PI/180);
+       	north.beginPath();
+		north.strokeStyle = '#ff0000';
+		north.moveTo(x,  y - 1);
+		north.lineTo(x + 1, y);
+		north.lineTo(x, y+1);
+		north.lineTo(x-1, y-1);
+		north.lineTo(x, y-1);
+		north.stroke();
 
 		north.beginPath();
 		north.fillStyle = '#0000ff'	
