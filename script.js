@@ -28,9 +28,9 @@ north.translate(x, y);
 
   		if ('ondeviceorientationabsolute' in window) { 
 		
-			window.ondeviceorientationabsolute = function(event) { 
+			window.ondeviceorientationabsolute = function(event) {
 
-       			var a = event.alpha * (Math.PI/180);
+       			let a = event.alpha * (Math.PI/180);
         
         north.clearRect(-70, -70, 80, 80);
 
@@ -53,7 +53,7 @@ north.translate(x, y);
 		else if ('ondeviceorientation' in window) { 
 			
 			window.ondeviceorientationabsolute = function(event) {
-       				var a = event.alpha * (Math.PI/180);
+       				let a = event.alpha * (Math.PI/180);
         
         north.clearRect(-70, -70, 80, 80);
 
