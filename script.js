@@ -34,7 +34,7 @@ north.translate(x, y);
         
         north.clearRect(-70, -70, 80, 80);
 
-		north.rotate(30);
+		north.rotate(a);
 
 		north.beginPath();
 		north.fillStyle = '#ff0000'	
