@@ -32,8 +32,19 @@ north.translate(x, y);
 
        			var a = event.alpha * (Math.PI/180);
         
-        		//north.clearRect(-70, -70, 80, 80);
-					north.rotate(a);
+        north.clearRect(-70, -70, 80, 80);
+
+		north.rotate(30);
+
+		north.beginPath();
+		north.fillStyle = '#ff0000'	
+		north.arc(0, 0, 3, 0, Math.PI *2);
+		north.fill();
+
+		north.beginPath();
+		north.fillStyle = '#0000ff'	
+		north.arc(0, -60, 5, 0, Math.PI *2);
+		north.fill();
 		
 			};
 		
@@ -42,10 +53,22 @@ north.translate(x, y);
 		else if ('ondeviceorientation' in window) { 
 			
 			window.ondeviceorientationabsolute = function(event) {
-       			var a = event.alpha * (Math.PI/180);
-       
-					north.rotate(20);
+       				var a = event.alpha * (Math.PI/180);
+        
+        north.clearRect(-70, -70, 80, 80);
 
+		north.rotate(a);
+
+		north.beginPath();
+		north.fillStyle = '#ff0000'	
+		north.arc(0, 0, 3, 0, Math.PI *2);
+		north.fill();
+
+		north.beginPath();
+		north.fillStyle = '#0000ff'	
+		north.arc(0, -60, 5, 0, Math.PI *2);
+		north.fill();
+		
 		};
 		
 
