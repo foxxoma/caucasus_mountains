@@ -46,7 +46,7 @@ north.translate(x, y);
 
 		north.beginPath();
 		north.fillStyle = '#0000ff'	
-		north.arc(0 - Math.sin(2*a)*60, 0 - Math.cos(2*a)*60, 5, 0, Math.PI *2);
+		north.arc(0, 0 - 60, 5, 0, Math.PI *2);
 		north.fill();
 
 		
@@ -67,16 +67,18 @@ north.translate(x, y);
 
        	let a = (-1 *  event.alpha) * (Math.PI/180);
 
-       	rth.beginPath();
-		north.fillStyle = '#ff0000'	
-		north.arc(x, y, 3, 0, Math.PI *2);
-		north.fill();
+        north.rotate(a); 
 
+       	north.beginPath();
+		north.fillStyle = '#ff0000'	
+		north.arc(0, 0, 3, 0, Math.PI *2);
+		north.fill();
 
 		north.beginPath();
 		north.fillStyle = '#0000ff'	
-		north.arc(x - Math.sin(a)*60, y - Math.cos(a)*60, 5, 0, Math.PI *2);
+		north.arc(0, 0 - 60, 5, 0, Math.PI *2);
 		north.fill();
+
 
 
 		};
