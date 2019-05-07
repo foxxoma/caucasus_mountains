@@ -11,6 +11,7 @@ const x = canv.width / 2,
 y = canv.height / 2;
 
 let aC;
+let rad;
 
 north.translate(x, y);
 
@@ -31,8 +32,9 @@ north.translate(x, y);
   		if ('ondeviceorientationabsolute' in window) { 
 		
 			window.ondeviceorientationabsolute = function(event) {
-
-       			let a = event.alpha * (Math.PI/180);
+				rad = event.alpha;
+				rad = rad.toFixed(0);
+       			let a = rad * (Math.PI/180);
 
         
         north.clearRect(-70, -70, 80, 80);
@@ -50,6 +52,7 @@ north.translate(x, y);
 		north.fill();
 
 		aC = a;
+
 			};
 		
 		} 
@@ -57,8 +60,12 @@ north.translate(x, y);
 		else if ('ondeviceorientation' in window) { 
 			
 			window.ondeviceorientationabsolute = function(event) {
-       				let a = event.alpha * (Math.PI/180);
-        
+
+       			rad = event.alpha;
+				rad = rad.toFixed(0);
+       			let a = rad * (Math.PI/180);
+
+        				
         north.clearRect(-70, -70, 80, 80);
 		north.rotate(-1*aC);
 		north.rotate(a);
@@ -74,6 +81,7 @@ north.translate(x, y);
 		north.fill();
 		
 		aC = a;
+
 		};
 		
 
