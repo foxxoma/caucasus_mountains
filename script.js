@@ -1,9 +1,11 @@
-
+var lat;
+var lng;
+var cornerAz;
 navigator.geolocation.getCurrentPosition(function(position) {
 
         // Текущие координаты.
-        var lat = position.coords.latitude;
-        var lng = position.coords.longitude;
+        lat = position.coords.latitude;
+       lng = position.coords.longitude;
        
 
  });
@@ -45,6 +47,7 @@ north.translate(x, y);
 		
 			window.ondeviceorientationabsolute = function(event) {
 				rad = event.alpha;
+				cornerAz = event.alpha;
 				//rad = rad.toFixed(0);
        			let a = rad * (Math.PI/180);
 
@@ -64,7 +67,7 @@ north.translate(x, y);
 		north.fill();
 
 		aC = a;
-		checkNavigation(lat, lng, event.alpha);
+		
 
 			};
 		
@@ -75,6 +78,7 @@ north.translate(x, y);
 			window.ondeviceorientationabsolute = function(event) {
 
        			rad = event.alpha;
+       			cornerAz = event.alpha;
 				//rad = rad.toFixed(0);
        			let a = rad * (Math.PI/180);
 
@@ -94,7 +98,7 @@ north.translate(x, y);
 		north.fill();
 		
 		aC = a;
-		checkNavigation(lat, lng, event.alpha);
+		
 		};
 		
 
@@ -104,7 +108,13 @@ north.translate(x, y);
 				alert("f2");
 		}
 
+
+setInterval(function() {
+	checkNavigation(lat, lng, cornerAz)
+}, 10);
     
+
+
 function checkNavigation(y, x, az){
 	let corner1, corner2;
 	let a, b, c;
@@ -125,8 +135,8 @@ cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
 let s = corner1 + corner2;
-s = s.toFixed(0);
-az = az.toFixed(0);
+//s = s.toFixed(0);
+//az = az.toFixed(0);
 if(az == s){
 	alert("вы смотрите на этот оъект");
 }
