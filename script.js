@@ -135,8 +135,8 @@ cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
 let s = corner1 + corner2;
-//s = s.toFixed(0);
-//az = az.toFixed(0);
+s = s.toFixed(0);
+az = az.toFixed(0);
 if(az == s){
 	alert("вы смотрите на этот оъект");
 }
