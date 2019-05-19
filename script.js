@@ -47,7 +47,7 @@ north.translate(x, y);
 		
 			window.ondeviceorientationabsolute = function(event) {
 				rad = event.alpha;
-				cornerAz = event.alpha;
+				cornerAz = 360 - event.alpha;
 				//rad = rad.toFixed(0);
        			let a = rad * (Math.PI/180);
 
@@ -78,7 +78,7 @@ north.translate(x, y);
 			window.ondeviceorientationabsolute = function(event) {
 
        			rad = event.alpha;
-       			cornerAz = event.alpha;
+       			cornerAz = 360 - event.alpha;
 				//rad = rad.toFixed(0);
        			let a = rad * (Math.PI/180);
 
@@ -136,9 +136,8 @@ corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*
 
 let s = corner1 + corner2;
 s = s.toFixed(0);
-saz = 360 - az;
-saz = saz.toFixed(0);
-if(saz == s){
+az = az.toFixed(0);
+if(az == s){
 	alert("вы смотрите на этот оъект");
 }
 
