@@ -1,3 +1,15 @@
+
+navigator.geolocation.getCurrentPosition(function(position) {
+
+        // Текущие координаты.
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+       
+
+ });
+
+
+
 const canv = document.getElementById('canvas'),
 north = canv.getContext('2d');
 
@@ -33,7 +45,7 @@ north.translate(x, y);
 		
 			window.ondeviceorientationabsolute = function(event) {
 				rad = event.alpha;
-				rad = rad.toFixed(0);
+				//rad = rad.toFixed(0);
        			let a = rad * (Math.PI/180);
 
         
@@ -52,6 +64,7 @@ north.translate(x, y);
 		north.fill();
 
 		aC = a;
+		checkNavigation(lat, lng, event.alpha);
 
 			};
 		
@@ -62,7 +75,7 @@ north.translate(x, y);
 			window.ondeviceorientationabsolute = function(event) {
 
        			rad = event.alpha;
-				rad = rad.toFixed(0);
+				//rad = rad.toFixed(0);
        			let a = rad * (Math.PI/180);
 
         				
@@ -81,7 +94,7 @@ north.translate(x, y);
 		north.fill();
 		
 		aC = a;
-
+		checkNavigation(lat, lng, event.alpha);
 		};
 		
 
@@ -90,4 +103,37 @@ north.translate(x, y);
 		else{
 				alert("f2");
 		}
+
     
+function checkNavigation(y, x, az){
+	let corner1, corner2;
+	let a, b, c;
+	b = x;
+	c = 90 - y;
+	a = Math.sqrt( Math.pow(b,2) + Math.pow(c,2) );
+	corner1 = Math.acos( (Math.pow(a,2) + Math.pow(c,2) - Math.pow(b,2)) / (2*a*c)) *(180/Math.PI);
+	
+
+//задаем ш и д горы и если гора в первой четверти относительно нашего местоположения
+let yM, xM ,aM, bM, cM;
+ym = 44.9391;
+xM = 45.59806;
+
+aM = ym - y;
+bM = xM - x;
+cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
+corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
+
+let s = corner1 + corner2;
+s = s.toFixed(0);
+az = az.toFixed(0);
+if(az == s){
+	alert("вы смотрите на этот оъект");
+}
+
+
+
+
+
+
+}
