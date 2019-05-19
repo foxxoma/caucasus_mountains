@@ -136,7 +136,8 @@ corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*
 
 let s = corner1 + corner2;
 s = s.toFixed(0);
-az = az.toFixed(0);
+az = 360 - az;
+az.toFixed(0);
 if(az == s){
 	alert("вы смотрите на этот оъект");
 }
