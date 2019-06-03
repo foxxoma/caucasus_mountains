@@ -177,7 +177,7 @@ aM = x - xM;
 cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
- s = corner1 + 90 + 90 + 90 corner2;
+ s = corner1 + 90 + 90 + 90 + corner2;
 if(s > 360) 
 
 {
