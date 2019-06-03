@@ -126,17 +126,69 @@ function checkNavigation(y, x, az){
 
 //задаем ш и д горы и если гора в первой четверти относительно нашего местоположения
 let yM, xM ,aM, bM, cM;
-ym = 44.9391;
+ym = 38.9391;
 xM = 45.59805;
+let s;
+
+if(yM > y && xM > x){
+
 
 aM = ym - y;
 bM = xM - x;
 cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
-let s = corner1 + corner2;
+ s = corner1 + corner2;
 s = s.toFixed(0);
 az = az.toFixed(0);
+}
+
+if(yM < y && xM > x){
+
+
+bM = y - yM;
+aM = xM - x;
+cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
+corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
+
+ s = corner1 + 90 + corner2;
+s = s.toFixed(0);
+az = az.toFixed(0);
+}
+
+if(yM < y && xM < x){
+
+
+aM = y - yM;
+bM = x - xM;
+cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
+corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
+
+ s = corner1 + 90 + 90 + corner2;
+s = s.toFixed(0);
+az = az.toFixed(0);
+}
+
+if(yM > y && xM < x){
+
+
+bM = yM - y;
+aM = x - xM;
+cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
+corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
+
+ s = corner1 + 90 + 90 + 90 corner2;
+if(s > 360) 
+
+{
+	s = s - 360;
+}
+
+s = s.toFixed(0);
+az = az.toFixed(0);
+}
+
+
 if(az == s){
 	alert("вы смотрите на этот оъект");
 }
