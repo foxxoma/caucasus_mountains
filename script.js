@@ -124,8 +124,8 @@ function checkNavigation(y, x, az){
 	corner1 = Math.acos( (Math.pow(a,2) + Math.pow(c,2) - Math.pow(b,2)) / (2*a*c)) *(180/Math.PI);
 	
 let yM, xM ,aM, bM, cM;
-yM = 42.9391;
-xM = 43.59806;
+yM = 44.59806;
+xM = 42.9391;
 let s;
 
 if(yM > y && xM > x){
@@ -137,8 +137,8 @@ cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
  s = corner1 + corner2;
-
-
+s = s.toFixed(0);
+az = az.toFixed(0);
 }
 
 else if(yM < y && xM > x){
@@ -150,8 +150,8 @@ cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
  s = corner1 + 90 + corner2;
-
-
+s = s.toFixed(0);
+az = az.toFixed(0);
 }
 
 else if(yM < y && xM < x){
@@ -163,8 +163,8 @@ cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
  s = corner1 + 90 + 90 + corner2;
-
-
+s = s.toFixed(0);
+az = az.toFixed(0);
 }
 
 else if (yM > y && xM < x){
@@ -182,8 +182,8 @@ if(s > 360)
 	s = s - 360;
 }
 
-
-
+s = s.toFixed(0);
+az = az.toFixed(0);
 }
 
 
