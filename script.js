@@ -125,7 +125,7 @@ function checkNavigation(y, x, az){
 	
 let yM, xM ,aM, bM, cM;
 yM = 38.9391;
-xM = 45.59805;
+xM = 60.59805;
 let s;
 
 if(yM > y && xM > x){
