@@ -123,10 +123,8 @@ function checkNavigation(y, x, az){
 	a = Math.sqrt( Math.pow(b,2) + Math.pow(c,2) );
 	corner1 = Math.acos( (Math.pow(a,2) + Math.pow(c,2) - Math.pow(b,2)) / (2*a*c)) *(180/Math.PI);
 	
-
-//задаем ш и д горы и если гора в первой четверти относительно нашего местоположения
 let yM, xM ,aM, bM, cM;
-ym = 38.9391;
+ym = 44.9391;
 xM = 45.59805;
 let s;
 
@@ -143,7 +141,7 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(yM < y && xM > x){
+else if(yM < y && xM > x){
 
 
 bM = y - yM;
@@ -156,7 +154,7 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(yM < y && xM < x){
+else if(yM < y && xM < x){
 
 
 aM = y - yM;
@@ -169,7 +167,7 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(yM > y && xM < x){
+else if (yM > y && xM < x){
 
 
 bM = yM - y;
