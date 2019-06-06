@@ -127,8 +127,8 @@ let yM, xM ,aM, bM, cM;
 yM = [42.9391, 42.9034];
 xM = [44.59806, 43.97759];
 let s;
-
-for (let i = 1; i < yM.length; i++){
+let i = 1;
+//for (let i = 1; i < yM.length; i++){
 
 if(yM[i] > y && xM[i] > x){
 
@@ -200,7 +200,7 @@ else if(az == s && i == 0){
 }
 
 
-}
+//}
 
 
 
