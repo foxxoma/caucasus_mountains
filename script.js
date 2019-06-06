@@ -189,9 +189,13 @@ az = az.toFixed(0);
 }
 
 
-if(az == s){
-	alert(i);
-	
+if(az == s && i == 1){
+	alert(1);
+
+}
+else if(az == s && i == 0){
+	alert(0);
+
 }
 
 
