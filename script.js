@@ -128,8 +128,10 @@ yM = [42.9391, 42.9034];
 xM = [44.59806, 43.97759];
 let s;
 
-if(yM > y && xM > x){
 for (let i =0; i < yM.length; i++){
+
+if(yM[i] > y && xM[i] > x){
+
 
 aM = yM[i] - y;
 bM = xM[i] - x;
@@ -139,17 +141,10 @@ corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*
  s = corner1 + corner2;
 s = s.toFixed(0);
 az = az.toFixed(0);
-
-if(az == s ){
-	alert(i);
-	break;
 }
 
-}
-}
+else if(yM[i] < y && xM[i] > x){
 
-else if(yM < y && xM > x){
-for (let i =0; i < yM.length; i++){
 
 bM = y - yM[i];
 aM = xM[i] - x;
@@ -159,40 +154,26 @@ corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*
  s = corner1 + 90 + corner2;
 s = s.toFixed(0);
 az = az.toFixed(0);
-
-	if(az == s ){
-	alert(i);
-	break;
 }
 
-}
-}
+else if(yM[i] < y && xM[i] < x){
 
-else if(yM < y && xM < x){
-for (let i =0; i < yM.length; i++){
 
-aM = y - yM;
-bM = x - xM;
+aM = y - yM[i];
+bM = x - xM[i];
 cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
  s = corner1 + 90 + 90 + corner2;
 s = s.toFixed(0);
 az = az.toFixed(0);
-
-if(az == s ){
-	alert(i);
-	break;
 }
 
-}
-}
+else if (yM[i] > y && xM[i] < x){
 
-else if (yM > y && xM < x){
-for (let i =0; i < yM.length; i++){
 
-bM = yM - y;
-aM = x - xM;
+bM = yM[i] - y;
+aM = x - xM[i];
 cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
@@ -205,19 +186,16 @@ if(s > 360)
 
 s = s.toFixed(0);
 az = az.toFixed(0);
+}
 
-if(az == s ){
+
+if(az == s){
 	alert(i);
 	break;
 }
 
+
 }
-}
-
-
-
-
-
 
 
 
