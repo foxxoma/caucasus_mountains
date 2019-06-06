@@ -191,7 +191,7 @@ az = az.toFixed(0);
 
 if(az == s){
 	alert(i);
-	break;
+	
 }
 
 
