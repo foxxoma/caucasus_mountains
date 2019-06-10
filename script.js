@@ -113,7 +113,7 @@ setInterval(function() {
 	checkNavigation(lat, lng, cornerAz)
 }, 10);
     
-let i = 0;
+
 
 function checkNavigation(y, x, az){
 	let corner1, corner2;
@@ -129,9 +129,9 @@ xM = [44.59806, 43.97759];
 
 let s;
 
+for(let i = 0; i < 2; i++){
 
-
-if(yM[i] > y && xM[i] > x){
+if (yM[i] > y && xM[i] > x){
 
 
 aM = yM[i] - y;
@@ -144,7 +144,7 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-else if(yM[i] < y && xM[i] > x){
+else if (yM[i] < y && xM[i] > x){
 
 
 bM = y - yM[i];
@@ -157,7 +157,7 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-else if(yM[i] < y && xM[i] < x){
+else if (yM[i] < y && xM[i] < x){
 
 
 aM = y - yM[i];
@@ -179,8 +179,8 @@ cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
  s = corner1 + 90 + 90 + 90 + corner2;
-if(s > 360) 
 
+if(s > 360) 
 {
 	s = s - 360;
 }
@@ -195,15 +195,12 @@ if(az == s && i == 1){
 	
 
 }
+
 else if(az == s && i == 0){
 	alert(0);
 
 }
 
-if (i == yM.lenght - 1) {i = 0;} else {i++;}
 
-//}
-
-
-
+}
 }
