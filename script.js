@@ -200,7 +200,7 @@ else if(az == s && i == 0){
 
 }
 
-if (i = yM.lenght) {i = 0} else {i++}
+if (i == yM.lenght - 1) {i = 0;} else {i++;}
 
 //}
 
