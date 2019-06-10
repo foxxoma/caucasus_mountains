@@ -16,7 +16,7 @@ const canv = document.getElementById('canvas'),
 north = canv.getContext('2d');
 
 
-
+const p = document.getElementById('p');
 canv.width =  Math.sqrt( 2 * Math.pow(window.innerHeight, 2));
 canv.height = Math.sqrt( 2 * Math.pow(window.innerHeight, 2));
 
@@ -191,13 +191,13 @@ az = az.toFixed(0);
 
 
 if(az == s && i == 1){
-	alert(1);
+	p.textContent = "1";
 	
 
 }
 
 else if(az == s && i == 0){
-	alert(0);
+	p.textContent = "0";
 
 }
 
