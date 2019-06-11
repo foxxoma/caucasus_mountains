@@ -111,9 +111,8 @@ north.translate(x, y);
 
 setInterval(function() {
 	checkNavigation(lat, lng, cornerAz)
-}, 10);
+}, 100);
     
-let i = 0;
 
 function checkNavigation(y, x, az){
 	let corner1, corner2;
@@ -129,7 +128,8 @@ xM = [44.59806, 43.97759];
 
 let s;
 
-
+for(let i = 0; i < 2; i++){
+	
 if (yM[i] > y && xM[i] > x){
 
 
@@ -189,16 +189,16 @@ az = az.toFixed(0);
 }
 
 if(az == s && i == 0){
-	p.textContent = "0"; i = 1;
+	p.textContent = "0"; 
 
 }
 
 else if(az == s && i == 1){
-	p.textContent = "1"; i = 0;
+	p.textContent = "1";
 
 }
-else {i=1;}
 
+}
 
 
 }
