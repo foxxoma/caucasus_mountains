@@ -123,8 +123,8 @@ function checkNavigation(y, x, az){
 	corner1 = Math.acos( (Math.pow(a,2) + Math.pow(c,2) - Math.pow(b,2)) / (2*a*c)) *(180/Math.PI);
 	
 let yM, xM ,aM, bM, cM;
-yM = [42.9391, 42.9034];
-xM = [44.59806, 43.97759];
+yM = [42.9034, 42.9391];
+xM = [43.97759, 44.59806];
 
 let s;
 
