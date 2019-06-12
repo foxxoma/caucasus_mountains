@@ -113,7 +113,7 @@ setInterval(function() {
 	checkNavigation(lat, lng, cornerAz)
 }, 100);
 
-let i = 1;   
+let i = -1;   
 
 function checkNavigation(y, x, az){
 	let corner1, corner2;
@@ -128,7 +128,7 @@ yM = [42.9034, 42.9391];
 xM = [43.97759, 44.59806];
 
 let s;
-
+i++;
 
 	
 if (yM[i] > y && xM[i] > x){
@@ -199,6 +199,6 @@ else if(az == s && i == 1){
 
 }
 
-
+if(i == 1){i = -1;}
 
 }
