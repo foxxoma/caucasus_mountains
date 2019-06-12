@@ -112,7 +112,8 @@ north.translate(x, y);
 setInterval(function() {
 	checkNavigation(lat, lng, cornerAz)
 }, 100);
-    
+
+let i = 1;   
 
 function checkNavigation(y, x, az){
 	let corner1, corner2;
@@ -128,7 +129,7 @@ xM = [43.97759, 44.59806];
 
 let s;
 
-for(let i = 0; i < 2; i++){
+
 	
 if (yM[i] > y && xM[i] > x){
 
@@ -198,7 +199,6 @@ else if(az == s && i == 1){
 
 }
 
-}
 
 
 }
