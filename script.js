@@ -108,13 +108,20 @@ north.translate(x, y);
 				alert("f2");
 		}
 
+let yM, xM;
+
+yM = [42.9391, 42.9034];
+xM = [44.59806, 43.97759];
+
+let i = 0;
 
 setInterval(function() {
-	checkNavigation(lat, lng, cornerAz)
+	checkNavigation(i, lat, lng, cornerAz);
 }, 100);
     
 
-function checkNavigation(y, x, az){
+
+function checkNavigation(i, y, x, az){
 	let corner1, corner2;
 	let a, b, c;
 	b = x;
@@ -122,13 +129,11 @@ function checkNavigation(y, x, az){
 	a = Math.sqrt( Math.pow(b,2) + Math.pow(c,2) );
 	corner1 = Math.acos( (Math.pow(a,2) + Math.pow(c,2) - Math.pow(b,2)) / (2*a*c)) *(180/Math.PI);
 	
-let yM, xM ,aM, bM, cM;
-yM = [42.9391, 42.9034];
-xM = [44.59806, 43.97759];
+let aM, bM, cM;
+
 
 let s;
 
-for(let i = 0; i < 2; i++){
 	
 if (yM[i] > y && xM[i] > x){
 
@@ -198,7 +203,10 @@ else if(az == s && i == 1){
 
 }
 
-}
-
+if (i < yM.length - 1)
+{
+i++;
+} 
+else {i = 0;} 
 
 }
