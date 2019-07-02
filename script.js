@@ -108,20 +108,20 @@ north.translate(x, y);
 				alert("f2");
 		}
 
-let yM, xM;
+let yM, xM, MyM, MxM;
 
-yM = [42.9391, 42.9034];
-xM = [44.59806, 43.97759];
+MyM = [42.9391, 42.9034];
+MxM = [44.59806, 43.97759];
 
 let i = 0;
 
 setInterval(function() {
-	checkNavigation(i, lat, lng, cornerAz);
+	checkNavigation(MxM[0], MyM[0], lat, lng, cornerAz);
 }, 100);
     
 
 
-function checkNavigation(i, y, x, az){
+function checkNavigation(xM, yM, y, x, az){
 	let corner1, corner2;
 	let a, b, c;
 	b = x;
@@ -135,11 +135,11 @@ let aM, bM, cM;
 let s;
 
 	
-if (yM[i] > y && xM[i] > x){
+if (yM > y && xM > x){
 
 
-aM = yM[i] - y;
-bM = xM[i] - x;
+aM = yM - y;
+bM = xM - x;
 cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
@@ -148,11 +148,11 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-else if (yM[i] < y && xM[i] > x){
+else if (yM < y && xM > x){
 
 
-bM = y - yM[i];
-aM = xM[i] - x;
+bM = y - yM;
+aM = xM - x;
 cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
@@ -161,11 +161,11 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-else if (yM[i] < y && xM[i] < x){
+else if (yM < y && xM < x){
 
 
-aM = y - yM[i];
-bM = x - xM[i];
+aM = y - yM;
+bM = x - xM;
 cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
@@ -174,11 +174,11 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-else if (yM[i] > y && xM[i] < x){
+else if (yM > y && xM < x){
 
 
-bM = yM[i] - y;
-aM = x - xM[i];
+bM = yM - y;
+aM = x - xM;
 cM = Math.sqrt( Math.pow(bM,2) + Math.pow(aM,2) );
 corner2 = Math.acos( (Math.pow(aM,2) + Math.pow(cM,2) - Math.pow(bM,2)) / (2*aM*cM)) *(180/Math.PI);
 
@@ -193,20 +193,14 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(az == s && i == 0){
-	p.textContent = "0"; 
+if(az == s){
+	alert("1");
 
 }
 
-else if(az == s && i == 1){
-	p.textContent = "1";
 
-}
 
-if (i < yM.length - 1)
-{
-i++;
-} 
-else {i = 0;} 
+
+
 
 }
