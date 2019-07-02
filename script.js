@@ -108,15 +108,17 @@ north.translate(x, y);
 				alert("f2");
 		}
 
-let  MyM, MxM, f;
- f = 1;
+let  MyM, MxM;
+
 
 MyM = [42.9391, 42.9034];
 MxM = [44.59806, 43.97759];
 
 
 setInterval(function() {
+	for (let f = 0; f < MyM.length; f++){
 	checkNavigation(MxM[f], MyM[f], lat, lng, cornerAz);
+}
 }, 10);
     
 
