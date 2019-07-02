@@ -116,7 +116,7 @@ MxM = [44.59806, 43.97759];
 
 setInterval(function() {
 	checkNavigation(MxM[0], MyM[0], lat, lng, cornerAz);
-}, 100);
+}, 10);
     
 
 
