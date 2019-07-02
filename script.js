@@ -108,12 +108,11 @@ north.translate(x, y);
 				alert("f2");
 		}
 
-let yM, xM, MyM, MxM;
+let  MyM, MxM;
 
 MyM = [42.9391, 42.9034];
 MxM = [44.59806, 43.97759];
 
-let i = 0;
 
 setInterval(function() {
 	checkNavigation(MxM[0], MyM[0], lat, lng, cornerAz);
