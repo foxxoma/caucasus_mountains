@@ -108,7 +108,7 @@ north.translate(x, y);
 				alert("f2");
 		}
 
-let  MyM, MxM;
+let  MyM, MxM, f;
 
 
 MyM = [42.9391, 42.9034];
@@ -116,7 +116,7 @@ MxM = [44.59806, 43.97759];
 
 
 setInterval(function() {
-	for (let f = 0; f < MyM.length; f++){
+	for ( f = 0; f < MyM.length; f++){
 	checkNavigation(MxM[f], MyM[f], lat, lng, cornerAz);
 }
 }, 10);
@@ -195,8 +195,12 @@ s = s.toFixed(0);
 az = az.toFixed(0);
 }
 
-if(az == s){
+if(az == s && f == 1){
 	alert("1");
+
+}
+else if(az == s && f == 0){
+	alert("0");
 
 }
 
