@@ -6,8 +6,59 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<canvas id="canvas"></canvas>
-	<p id = "p"></p>
+	<div id="trailer" class="is_overlay">
+	<video id="video"  autoplay></video>
+	</div>
+
+<div class="window" id="window">
+	<div class="content">
+	
+		
+		
+		<div class="headline" id="name">
+  			<div class="headline__container" id="name_mountain">Some</div>
+		</div>
+	
+		<table class="description" id="description">
+
+			<tr class="description_name_mountain">
+				<td >
+					<h2 id="description_name_mountain">Name</h2>
+				</td>
+    			
+  			</tr>
+
+  			<tr class="description_text">
+    			<td>
+    				<textarea disabled class="description_textrea" id="description_textrea">Description
+    				</textarea>
+    			</td>
+  			</tr>
+
+		</table>
+
+		<div class="description_menu" id="description_menu">
+			<p>&#x2630</p>
+		</div>
+		
+	</div>
+
+	<div class="settings">
+		
+		<div class="settings_content" id="settings_content">
+			<input id="range_fontSize" class="range_fontSize" type="range" min="0" max="38" step="1" value="20"> 
+			<p id = "range_fontSize_example" class="range_fontSize_example">A a</p>
+			<input id="range_angle" class="range_angle" type="range" min="1" max="180" step="1" value="10">
+			<canvas class="range_canvas_angle" id="range_canvas_angle"></canvas>
+		</div>
+		<div class="settings_icon" id="settings_icon">
+			<img src="img/settings.png" alt="settings">
+		</div>
+	</div>
+
+</div>
+	<script src="Json.js"></script>
 	<script src="script.js"></script>
+	
 </body>
 </html>
