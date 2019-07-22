@@ -65,7 +65,6 @@ if ('ondeviceorientationabsolute' in window) {
 	window.ondeviceorientationabsolute = throttle((event) => {
 		// Check how far the user has scrolled
 		let cornerAz = 360 - event.alpha;
-		cornerAz = cornerAz.toFixed(0);
 		angleComparison(cornerAz);
 	}, 20);
 
@@ -73,7 +72,6 @@ if ('ondeviceorientationabsolute' in window) {
 	window.ondeviceorientationabsolute = throttle((event) => {
 		// Check how far the user has scrolled
 		let cornerAz = 360 - event.alpha;
-		cornerAz = cornerAz.toFixed(0);
 		angleComparison(cornerAz);
 	}, 20);
 
@@ -155,7 +153,6 @@ function getAngle(yM, xM, y, x) {
 		}
 	}
 
-	s = s.toFixed(0);
 	return s;
 
 }
