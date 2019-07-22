@@ -3,13 +3,13 @@ var MXYND =
 		{
 			name: "Mountain1",
 			description: "Mountain1 - ******* ******** ******",
-			lat: 42.9034,
-			lng: 43.97759
+			lat: 42.2,
+			lng: 41.1
 		}, 
 		{
 			name: "Mountain2",
 			description: "Mountain2 - ******* ******** ******",
-			lat: 42.9391,
-			lng: 44.59806
+			lat: 41.1,
+			lng: 45.2
 		}
 	]
