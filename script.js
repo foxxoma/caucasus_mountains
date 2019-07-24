@@ -86,6 +86,12 @@ function angleComparison(az) {
 			descriptionTextrea.textContent = MXYND[f].description;
 			nameMountain.textContent = MXYND[f].name;
 		}
+		else {
+			descriptionNameMountain.textContent = '_____';
+			descriptionTextrea.textContent = '_____';
+			nameMountain.textContent = '_____';
+		}
+
 	}
 }
 
