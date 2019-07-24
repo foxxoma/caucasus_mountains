@@ -9,7 +9,7 @@ var MXYND =
 		{
 			name: "Mountain2",
 			description: "Mountain2 - ******* ******** ******",
-			lat: 44.254251,
-			lng: 43.216860
+			lat: 43.024593,
+			lng: 44.68211
 		}
 	]
