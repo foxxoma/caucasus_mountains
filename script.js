@@ -80,17 +80,17 @@ if ('ondeviceorientationabsolute' in window) {
 }
 
 function angleComparison(az) {
+
+	descriptionNameMountain.textContent = '_____';
+	descriptionTextrea.textContent = '_____';
+	nameMountain.textContent = '_____';
+
 	for (let f = 0; f < MXYND.length; f++) {
 		if (Math.abs(az - getAngle(MXYND[f].lat, MXYND[f].lng, MeLat, MeLng)) < viewingAngle) {
 			descriptionNameMountain.textContent = MXYND[f].name;
 			descriptionTextrea.textContent = MXYND[f].description;
 			nameMountain.textContent = MXYND[f].name;
-		} else {
-			descriptionNameMountain.textContent = '_____';
-			descriptionTextrea.textContent = '_____';
-			nameMountain.textContent = '_____';
 		}
-
 	}
 }
 
