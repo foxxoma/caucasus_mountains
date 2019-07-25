@@ -111,7 +111,13 @@ function angleComparison(az) {
 	}
 }
 
-function distanceComparison(f1, l1, f2, l2){
+function distanceComparison(lat1, lng1, lat2, lng2){
+
+	let f1 = lat1 / 180 * Math.PI;
+    let f2 = lat2 / 180 * Math.PI;
+	let l1 = lng1 / 180 * Math.PI;
+	let l2 = lng2 / 180 * Math.PI;
+
 	let a  = Math.pow(Math.sin((f2-f1)/2),2) + Math.cos(f1) * Math.cos(f2) * Math.pow(Math.sin((l2-l1)/2),2);
     let c  = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
 	let d = 6371 * c;
@@ -119,9 +125,20 @@ function distanceComparison(f1, l1, f2, l2){
 }
 
 //checks what mountain i look at
-function getAngle(f1, l1, f2, l2) {
+function getAngle(lat1, lng1, lat2, lng2) {
 	let azimuth;
-	azimuth = Math.atan2((Math.sin(l2-l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2)  * Math.cos(l2-l1))) *  (180 / Math.PI);
+
+	let f1 = lat1 / 180 * Math.PI;
+    let f2 = lat2 / 180 * Math.PI;
+	let l1 = lng1 / 180 * Math.PI;
+	let l2 = lng2 / 180 * Math.PI;
+
+	azimuth = (Math.atan2((Math.sin(l2-l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2)  * Math.cos(l2-l1))));
+	azimuth = azimuth / Math.PI * 180;
+	
+	if (azimuth < 0) {
+		azimuth = 360 - azimuth;
+	}
 
 	//degree check with upside down screen 
 	if (window.orientation == 90 || window.orientation == -90) {
