@@ -81,9 +81,9 @@ if ('ondeviceorientationabsolute' in window) {
 
 function angleComparison(az) {
 
-	descriptionNameMountain.textContent = '_____';
-	descriptionTextrea.textContent = '_____';
-	nameMountain.textContent = '_____';
+	descriptionNameMountain.textContent = az;
+	descriptionTextrea.textContent = az;
+	nameMountain.textContent = az;
 
 	for (let f = 0; f < MXYND.length; f++) {
 		if (Math.abs(az - getAngle(MXYND[f].lat, MXYND[f].lng, MeLat, MeLng)) < viewingAngle) {
