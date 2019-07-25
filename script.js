@@ -18,7 +18,8 @@ let MScheck = 0;
 let viewingAngle = 10;
 let MeLat;
 let MeLng;
-
+let MinDistanceMountain;
+let MinDistanceMountainCheck = true;
 StartCanvasRotateAngle(); //starting angle of view
 
 //I get latitude and longitude
@@ -87,9 +88,16 @@ function angleComparison(az) {
 
 	for (let f = 0; f < MXYND.length; f++) {
 		if (Math.abs(az - getAngle(MXYND[f].lat, MXYND[f].lng, MeLat, MeLng)) < viewingAngle) {
-			descriptionNameMountain.textContent = MXYND[f].name;
-			descriptionTextrea.textContent = MXYND[f].description;
-			nameMountain.textContent = MXYND[f].name;
+			
+			if(!MinDistanceMountainCheck && MinDistanceMountain > Math.sqrt(Math.pow((MXYND[f].lat - MeLat), 2) + Math.pow((MXYND[f].Lng - MeLng), 2)) )
+			{	MinDistanceMountain = ; 
+				descriptionNameMountain.textContent = MXYND[f].name;
+				descriptionTextrea.textContent = MXYND[f].description;
+				nameMountain.textContent = MXYND[f].name;
+			}
+			MinDistanceMountainCheck = false;
+		}else{
+			MinDistanceMountainCheck = true;
 		}
 	}
 }
