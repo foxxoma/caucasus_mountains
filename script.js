@@ -16,16 +16,16 @@ let front = false;
 let MDcheck = 0;
 let MScheck = 0;
 let viewingAngle = 10;
-let MeLat;
-let MeLng;
-let MinDistanceMountain = 999999;
-let MinDistanceMountainCheck = false;
+let MyPosition = {};
+let lookMountain = false;
+let distanceMountain;
+
 StartCanvasRotateAngle(); //starting angle of view
 
 //I get latitude and longitude
 navigator.geolocation.getCurrentPosition(function(position) {
-	MeLat = position.coords.latitude;
-	MeLng = position.coords.longitude;
+	MyPosition.lat = position.coords.latitude;
+	MyPosition.lng = position.coords.longitude;
 });
 
 function throttle(callback, delay) {
@@ -87,91 +87,51 @@ function angleComparison(az) {
 	nameMountain.textContent = az;
 
 	for (let f = 0; f < MXYND.length; f++) {
-		if (Math.abs(az - getAngle(MXYND[f].lat, MXYND[f].lng, MeLat, MeLng)) < viewingAngle) {
-
-			if (!MinDistanceMountainCheck && MinDistanceMountain >= Math.sqrt(Math.pow((MXYND[f].lat - MeLat), 2) + Math.pow((MXYND[f].Lng - MeLng), 2))) {
-				MinDistanceMountain = Math.sqrt(Math.pow((MXYND[f].lat - MeLat), 2) + Math.pow((MXYND[f].Lng - MeLng), 2));
+		if (Math.abs(az - getAngle(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng)) < viewingAngle) {
+			if(lookMountain){
+				if(distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng) < distanceMountain){
+					distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng);
+					descriptionNameMountain.textContent = MXYND[f].name;
+					descriptionTextrea.textContent = MXYND[f].description;
+					nameMountain.textContent = MXYND[f].name;
+				}
+			}
+			else{
 				descriptionNameMountain.textContent = MXYND[f].name;
 				descriptionTextrea.textContent = MXYND[f].description;
 				nameMountain.textContent = MXYND[f].name;
-			}
-
-			descriptionNameMountain.textContent = MXYND[f].name;
-			descriptionTextrea.textContent = MXYND[f].description;
-			nameMountain.textContent = MXYND[f].name;
-
-			MinDistanceMountainCheck = false;
-		} else {
-			MinDistanceMountainCheck = true;
+				lookMountain = true;
+				distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng);
+			}	
+		}
+		else {
+			lookMountain = false;
+			distanceMountain = 0;
 		}
 	}
 }
 
+function distanceComparison(f1, l1, f2, l2){
+	let a  = Math.pow(Math.sin((f2-f1)/2),2) + Math.cos(f1) * Math.cos(f2) * Math.pow(Math.sin((l2-l1)/2),2);
+    let c  = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+	let d = 6371 * c;
+	return d;
+}
+
 //checks what mountain i look at
-function getAngle(yM, xM, y, x) {
-	let corner1, corner2;
-	let aMe, bMe, cMe;
-	bMe = x;
-	cMe = 90 - y;
-	aMe = Math.sqrt(Math.pow(bMe, 2) + Math.pow(cMe, 2));
-	corner1 = Math.acos((Math.pow(aMe, 2) + Math.pow(cMe, 2) - Math.pow(bMe, 2)) / (2 * aMe * cMe)) * (180 / Math.PI);
-
-	let aM, bM, cM;
-	let s;
-
-	if (yM > y && xM > x) {
-
-		aM = yM - y;
-		bM = xM - x;
-		cM = Math.sqrt(Math.pow(bM, 2) + Math.pow(aM, 2));
-		corner2 = Math.acos((Math.pow(aM, 2) + Math.pow(cM, 2) - Math.pow(bM, 2)) / (2 * aM * cM)) * (180 / Math.PI);
-
-		s = corner1 + corner2;
-
-	} else if (yM < y && xM > x) {
-
-
-		bM = y - yM;
-		aM = xM - x;
-		cM = Math.sqrt(Math.pow(bM, 2) + Math.pow(aM, 2));
-		corner2 = Math.acos((Math.pow(aM, 2) + Math.pow(cM, 2) - Math.pow(bM, 2)) / (2 * aM * cM)) * (180 / Math.PI);
-
-		s = corner1 + 90 + corner2;
-
-	} else if (yM < y && xM < x) {
-
-
-		aM = y - yM;
-		bM = x - xM;
-		cM = Math.sqrt(Math.pow(bM, 2) + Math.pow(aM, 2));
-		corner2 = Math.acos((Math.pow(aM, 2) + Math.pow(cM, 2) - Math.pow(bM, 2)) / (2 * aM * cM)) * (180 / Math.PI);
-
-		s = corner1 + 90 + 90 + corner2;
-
-	} else if (yM > y && xM < x) {
-
-
-		bM = yM - y;
-		aM = x - xM;
-		cM = Math.sqrt(Math.pow(bM, 2) + Math.pow(aM, 2));
-		corner2 = Math.acos((Math.pow(aM, 2) + Math.pow(cM, 2) - Math.pow(bM, 2)) / (2 * aM * cM)) * (180 / Math.PI);
-
-		s = corner1 + 90 + 90 + 90 + corner2;
-
-		if (s > 360) {
-			s = s - 360;
-		}
-	}
+function getAngle(f1, l1, f2, l2) {
+	let azimuth;
+	azimuth = Math.atan2[(Math.sin(l2-l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) − Math.sin(f1) * Math.cos(f2)  * Math.cos(l2-l1))];
 
 	//degree check with upside down screen 
 	if (window.orientation == 90 || window.orientation == -90) {
-		s = s - 90;
-		if (s < 0) {
-			s = 360 - s;
+		azimuth = azimuth - 90;
+		if (azimuth < 0) {
+			azimuth = 360 - azimuth;
 		}
 	}
 
-	return s;
+	return azimuth;
 
 }
 
