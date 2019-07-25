@@ -13,16 +13,17 @@ var MXYND =
 			lng: 44.5888324
 		},
 		{
-			name: "Tbauhoh",
-			description: "The height of the mountain reaches 2980 m.This mountain is part of the Rocky Ridge and the ridge itself, almost all along the length of it is cut by very deep gorges into separate parts. Her neighbors on the ridge are Kariuhoh in the west and Chizdinhokh in the east.",
-			lat: 42.8668879,
-			lng: 44.3940592
-		},
-		{
 			name: "Stolovaya",
 			description: "Madyhoh Mountain in Russia, in the North Caucasus. It is located mainly in the territory of the Dzheirahsky region of Ingushetia, along the ridge of the mountain passes the border with the Prigorodny district of North Ossetia. The height of the mountain is 3003 m. It is a table mountain. Table Mountain is depicted on the state emblem of the Republic of Ingushetia. The peak is visible from the capital of Ingushetia - Magas and North Ossetia - the city of Vladikavkaz and is also depicted on its coat of arms.",
 			lat: 42.8708924,
 			lng: 44.6966123
+			
+		},
+		{
+			name: "Tbauhoh",
+			description: "The height of the mountain reaches 2980 m.This mountain is part of the Rocky Ridge and the ridge itself, almost all along the length of it is cut by very deep gorges into separate parts. Her neighbors on the ridge are Kariuhoh in the west and Chizdinhokh in the east.",
+			lat: 42.8668879,
+			lng: 44.3940592
 		}
 
 	]
