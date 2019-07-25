@@ -121,7 +121,7 @@ function distanceComparison(f1, l1, f2, l2){
 //checks what mountain i look at
 function getAngle(f1, l1, f2, l2) {
 	let azimuth;
-	azimuth = Math.atan2((Math.sin(l2-l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2)  * Math.cos(l2-l1)));
+	azimuth = Math.atan2((Math.sin(l2-l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2)  * Math.cos(l2-l1))) *  (180 / Math.PI);
 
 	//degree check with upside down screen 
 	if (window.orientation == 90 || window.orientation == -90) {
