@@ -67,14 +67,14 @@ if ('ondeviceorientationabsolute' in window) {
 		// Check how far the user has scrolled
 		let cornerAz = 360 - event.alpha;
 		angleComparison(cornerAz);
-	}, 20);
+	}, 30);
 
 } else if ('ondeviceorientation' in window) {
 	window.ondeviceorientationabsolute = throttle((event) => {
 		// Check how far the user has scrolled
 		let cornerAz = 360 - event.alpha;
 		angleComparison(cornerAz);
-	}, 20);
+	}, 30);
 
 } else {
 	alert("error");
@@ -88,38 +88,36 @@ function angleComparison(az) {
 
 	for (let f = 0; f < MXYND.length; f++) {
 		if (Math.abs(az - getAngle(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng)) < viewingAngle) {
-			if(lookMountain){
-				if(distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng) < distanceMountain){
+			if (lookMountain) {
+				if (distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng) < distanceMountain) {
 					distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng);
 					descriptionNameMountain.textContent = MXYND[f].name;
 					descriptionTextrea.textContent = MXYND[f].description;
 					nameMountain.textContent = MXYND[f].name;
 				}
-			}
-			else{
+			} else {
 				descriptionNameMountain.textContent = MXYND[f].name;
 				descriptionTextrea.textContent = MXYND[f].description;
 				nameMountain.textContent = MXYND[f].name;
 				lookMountain = true;
 				distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng);
-			}	
-		}
-		else {
+			}
+		} else {
 			lookMountain = false;
 			distanceMountain = 0;
 		}
 	}
 }
 
-function distanceComparison(lat1, lng1, lat2, lng2){
+function distanceComparison(lat1, lng1, lat2, lng2) {
 
 	let f1 = lat1 / 180 * Math.PI;
-    let f2 = lat2 / 180 * Math.PI;
+	let f2 = lat2 / 180 * Math.PI;
 	let l1 = lng1 / 180 * Math.PI;
 	let l2 = lng2 / 180 * Math.PI;
 
-	let a  = Math.pow(Math.sin((f2-f1)/2),2) + Math.cos(f1) * Math.cos(f2) * Math.pow(Math.sin((l2-l1)/2),2);
-    let c  = 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+	let a = Math.pow(Math.sin((f2 - f1) / 2), 2) + Math.cos(f1) * Math.cos(f2) * Math.pow(Math.sin((l2 - l1) / 2), 2);
+	let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	let d = 6371 * c;
 	return d;
 }
@@ -129,13 +127,13 @@ function getAngle(lat1, lng1, lat2, lng2) {
 	let azimuth;
 
 	let f1 = lat1 / 180 * Math.PI;
-    let f2 = lat2 / 180 * Math.PI;
+	let f2 = lat2 / 180 * Math.PI;
 	let l1 = lng1 / 180 * Math.PI;
 	let l2 = lng2 / 180 * Math.PI;
 
-	azimuth = (Math.atan2((Math.sin(l2-l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2)  * Math.cos(l2-l1))));
+	azimuth = (Math.atan2((Math.sin(l2 - l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2) * Math.cos(l2 - l1))));
 	azimuth = azimuth / Math.PI * 180;
-	
+
 	if (azimuth < 0) {
 		azimuth = 360 - azimuth;
 	}
