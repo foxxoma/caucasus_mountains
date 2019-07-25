@@ -18,8 +18,8 @@ let MScheck = 0;
 let viewingAngle = 10;
 let MeLat;
 let MeLng;
-let MinDistanceMountain;
-let MinDistanceMountainCheck = true;
+let MinDistanceMountain = 999999;
+let MinDistanceMountainCheck = false;
 StartCanvasRotateAngle(); //starting angle of view
 
 //I get latitude and longitude
@@ -88,15 +88,20 @@ function angleComparison(az) {
 
 	for (let f = 0; f < MXYND.length; f++) {
 		if (Math.abs(az - getAngle(MXYND[f].lat, MXYND[f].lng, MeLat, MeLng)) < viewingAngle) {
-			
-			if(!MinDistanceMountainCheck && MinDistanceMountain > Math.sqrt(Math.pow((MXYND[f].lat - MeLat), 2) + Math.pow((MXYND[f].Lng - MeLng), 2)) )
-			{	MinDistanceMountain = ; 
+
+			if (!MinDistanceMountainCheck && MinDistanceMountain >= Math.sqrt(Math.pow((MXYND[f].lat - MeLat), 2) + Math.pow((MXYND[f].Lng - MeLng), 2))) {
+				MinDistanceMountain = Math.sqrt(Math.pow((MXYND[f].lat - MeLat), 2) + Math.pow((MXYND[f].Lng - MeLng), 2));
 				descriptionNameMountain.textContent = MXYND[f].name;
 				descriptionTextrea.textContent = MXYND[f].description;
 				nameMountain.textContent = MXYND[f].name;
 			}
+
+			descriptionNameMountain.textContent = MXYND[f].name;
+			descriptionTextrea.textContent = MXYND[f].description;
+			nameMountain.textContent = MXYND[f].name;
+
 			MinDistanceMountainCheck = false;
-		}else{
+		} else {
 			MinDistanceMountainCheck = true;
 		}
 	}
