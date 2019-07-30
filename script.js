@@ -1,6 +1,5 @@
 const video = document.getElementById('video');
 
-
 let ctx = settingEl.canvas.getContext('2d');
 
 let front = false;
@@ -73,9 +72,9 @@ if ('ondeviceorientationabsolute' in window) {
 
 function angleComparison(az) {
 
-	descriptionMountainEl.name.textContent = az;
-	descriptionMountainEl.contentInDescription.textContent = az;
-	descriptionMountainEl.nameInDescription.textContent = az;
+	descriptionMountainEl.name.textContent = '_____';
+	descriptionMountainEl.contentInDescription.textContent = '_____';
+	descriptionMountainEl.nameInDescription.textContent = '_____';
 
 	for (let f = 0; f < MXYND.length; f++) {
 		if (Math.abs(az - getAngle(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng)) < viewingAngle) {
