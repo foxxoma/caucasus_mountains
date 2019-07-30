@@ -1,22 +1,14 @@
-const descriptionTextrea = document.getElementById('description_textrea');
-const descriptionNameMountain = document.getElementById('description_name_mountain');
-const nameMountain = document.getElementById('name_mountain');
-const description = document.getElementById("description");
-const descriptionMenu = document.getElementById("description_menu");
 const video = document.getElementById('video');
-const rangeCanvasAngle = document.getElementById('range_canvas_angle');
-const settingContent = document.getElementById('settings_content');
-const settingsIcon = document.getElementById('settings_icon');
-const body = document.getElementById('window');
 const rangeFontSize = document.getElementById('range_fontSize');
 const rangeAngle = document.getElementById('range_angle');
 
-let ctx = rangeCanvasAngle.getContext('2d');
+let ctx = settingEl.canvas.getContext('2d');
+
 let front = false;
-let MDcheck = 0;
-let MScheck = 0;
+let descriptionClick = 0;
+let settingClick = 0;
 let viewingAngle = 10;
-let MyPosition = {};
+
 let lookMountain = false;
 let distanceMountain;
 
@@ -48,7 +40,7 @@ function throttle(callback, delay) {
 
 // Get access to the camera!
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-	var myConstraints = {
+	let myConstraints = {
 		video: {
 			facingMode: (front ? "user" : "environment")
 		}
@@ -82,23 +74,23 @@ if ('ondeviceorientationabsolute' in window) {
 
 function angleComparison(az) {
 
-	descriptionNameMountain.textContent = az;
-	descriptionTextrea.textContent = az;
-	nameMountain.textContent = az;
+	descriptionMountainEl.name.textContent = az;
+	descriptionMountainEl.contentInDescription.textContent = az;
+	descriptionMountainEl.nameInDescription.textContent = az;
 
 	for (let f = 0; f < MXYND.length; f++) {
 		if (Math.abs(az - getAngle(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng)) < viewingAngle) {
 			if (lookMountain) {
 				if (distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng) < distanceMountain) {
 					distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng);
-					descriptionNameMountain.textContent = MXYND[f].name;
-					descriptionTextrea.textContent = MXYND[f].description;
-					nameMountain.textContent = MXYND[f].name;
+					descriptionMountainEl.name.textContent = MXYND[f].name;
+					descriptionMountainEl.contentInDescription.textContent = MXYND[f].description;
+					descriptionMountainEl.nameInDescription.textContent = MXYND[f].name;
 				}
 			} else {
-				descriptionNameMountain.textContent = MXYND[f].name;
-				descriptionTextrea.textContent = MXYND[f].description;
-				nameMountain.textContent = MXYND[f].name;
+					descriptionMountainEl.name.textContent = MXYND[f].name;
+					descriptionMountainEl.contentInDescription.textContent = MXYND[f].description;
+					descriptionMountainEl.nameInDescription.textContent = MXYND[f].name;
 				lookMountain = true;
 				distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng);
 			}
@@ -152,16 +144,16 @@ function getAngle(lat1, lng1, lat2, lng2) {
 
 function StartCanvasRotateAngle() {
 	let a = 5 * Math.PI / 180;
-	let radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100) * 10;
+	let radrot = settingEl.canvas.height - (settingEl.canvas.height / 100) * 10;
 
-	if (radrot * 2 > rangeCanvasAngle.width) {
-		radrot = rangeCanvasAngle.width - (rangeCanvasAngle.width / 100) * 10;
+	if (radrot * 2 > settingEl.canvas.width) {
+		radrot = settingEl.canvas.width - (settingEl.canvas.width / 100) * 10;
 	}
 
-	let xCStart = rangeCanvasAngle.width / 2;
-	let yCStart = rangeCanvasAngle.height;
+	let xCStart = settingEl.canvas.width / 2;
+	let yCStart = settingEl.canvas.height;
 
-	ctx.clearRect(0, 0, rangeCanvasAngle.width, rangeCanvasAngle.height);
+	ctx.clearRect(0, 0, settingEl.canvas.width, settingEl.canvas.height);
 	ctx.fillStyle = 'magenta';
 	ctx.beginPath();
 	ctx.moveTo(xCStart, yCStart);
@@ -177,16 +169,16 @@ function StartCanvasRotateAngle() {
 rangeAngle.oninput = function() {
 	viewingAngle = rangeAngle.value / 2;
 	let a = rangeAngle.value / 2 * Math.PI / 180;
-	let radrot = rangeCanvasAngle.height - (rangeCanvasAngle.height / 100) * 10;
+	let radrot = settingEl.canvas.height - (settingEl.canvas.height / 100) * 10;
 
-	if (radrot * 2 > rangeCanvasAngle.width) {
-		radrot = rangeCanvasAngle.width - (rangeCanvasAngle.width / 100) * 10;
+	if (radrot * 2 > settingEl.canvas.width) {
+		radrot = settingEl.canvas.width - (settingEl.canvas.width / 100) * 10;
 	}
 
-	let xCStart = rangeCanvasAngle.width / 2;
-	let yCStart = rangeCanvasAngle.height;
+	let xCStart = settingEl.canvas.width / 2;
+	let yCStart = settingEl.canvas.height;
 
-	ctx.clearRect(0, 0, rangeCanvasAngle.width, rangeCanvasAngle.height);
+	ctx.clearRect(0, 0, settingEl.canvas.width, settingEl.canvas.height);
 	ctx.fillStyle = 'magenta';
 	ctx.beginPath();
 	ctx.moveTo(xCStart, yCStart);
@@ -200,29 +192,27 @@ rangeAngle.oninput = function() {
 }
 
 rangeFontSize.oninput = function() {
-	body.style.fontSize = rangeFontSize.value + 'px';
-	descriptionTextrea.style.fontSize = rangeFontSize.value + 'px';
+	settingEl.body.style.fontSize = rangeFontSize.value + 'px';
+	descriptionMountainEl.contentInDescription.style.fontSize = rangeFontSize.value + 'px';
 };
 
-
-
-settingsIcon.addEventListener('click', function(e) {
-	if (MScheck == 0) {
-		settingContent.style.display = "block";
-		MScheck = 1;
+settingEl.icon.addEventListener('click', function(e) {
+	if (settingClick  == 0) {
+		settingEl.interfase.style.display = "block";
+		settingClick  = 1;
 	} else {
-		settingContent.style.display = "none";
-		MScheck = 0;
+		settingEl.interfase.style.display = "none";
+		settingClick  = 0;
 	}
 });
 
 //open and close description
-descriptionMenu.addEventListener('click', function(e) {
-	if (MDcheck == 0) {
-		description.style.display = "table";
-		MDcheck = 1;
+descriptionMountainEl.icon.addEventListener('click', function(e) {
+	if (descriptionClick == 0) {
+		descriptionMountainEl.description.style.display = "table";
+		descriptionClick = 1;
 	} else {
-		description.style.display = "none";
-		MDcheck = 0;
+		descriptionMountainEl.description.style.display = "none";
+		descriptionClick = 0;
 	}
 });

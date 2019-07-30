@@ -1,4 +1,4 @@
-var MXYND =
+let MXYND =
 	[
 		{
 			name: "Fethuz",
@@ -27,3 +27,21 @@ var MXYND =
 		}
 
 	]
+
+let descriptionMountainEl =
+	{
+		contentInDescription : document.getElementById('description_textrea'),
+		nameInDescription : document.getElementById('description_name_mountain'),
+		name : document.getElementById('name_mountain'),
+		icon : document.getElementById("description_menu"),
+		description: document.getElementById("description")
+	}
+		
+let settingEl = 
+	{		
+		body : document.getElementById('window'),
+		canvas : document.getElementById('range_canvas_angle'),
+		icon : document.getElementById('settings_icon'),
+		interfase : document.getElementById('settings_content')
+	}
+let MyPosition = {};
