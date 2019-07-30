@@ -1,6 +1,5 @@
 const video = document.getElementById('video');
-const rangeFontSize = document.getElementById('range_fontSize');
-const rangeAngle = document.getElementById('range_angle');
+
 
 let ctx = settingEl.canvas.getContext('2d');
 
@@ -88,9 +87,9 @@ function angleComparison(az) {
 					descriptionMountainEl.nameInDescription.textContent = MXYND[f].name;
 				}
 			} else {
-					descriptionMountainEl.name.textContent = MXYND[f].name;
-					descriptionMountainEl.contentInDescription.textContent = MXYND[f].description;
-					descriptionMountainEl.nameInDescription.textContent = MXYND[f].name;
+				descriptionMountainEl.name.textContent = MXYND[f].name;
+				descriptionMountainEl.contentInDescription.textContent = MXYND[f].description;
+				descriptionMountainEl.nameInDescription.textContent = MXYND[f].name;
 				lookMountain = true;
 				distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng);
 			}
@@ -166,9 +165,9 @@ function StartCanvasRotateAngle() {
 	ctx.stroke();
 }
 
-rangeAngle.oninput = function() {
-	viewingAngle = rangeAngle.value / 2;
-	let a = rangeAngle.value / 2 * Math.PI / 180;
+settingEl.range.angle.oninput = function(e) {
+	viewingAngle = e.target.value / 2;
+	let a = e.target.value / 2 * Math.PI / 180;
 	let radrot = settingEl.canvas.height - (settingEl.canvas.height / 100) * 10;
 
 	if (radrot * 2 > settingEl.canvas.width) {
@@ -191,18 +190,18 @@ rangeAngle.oninput = function() {
 	ctx.stroke();
 }
 
-rangeFontSize.oninput = function() {
-	settingEl.body.style.fontSize = rangeFontSize.value + 'px';
-	descriptionMountainEl.contentInDescription.style.fontSize = rangeFontSize.value + 'px';
+settingEl.range.fontSize.oninput = function(e) {
+	settingEl.body.style.fontSize = e.target.value + 'px';
+	descriptionMountainEl.contentInDescription.style.fontSize = e.target.value + 'px';
 };
 
 settingEl.icon.addEventListener('click', function(e) {
-	if (settingClick  == 0) {
+	if (settingClick == 0) {
 		settingEl.interfase.style.display = "block";
-		settingClick  = 1;
+		settingClick = 1;
 	} else {
 		settingEl.interfase.style.display = "none";
-		settingClick  = 0;
+		settingClick = 0;
 	}
 });
 
