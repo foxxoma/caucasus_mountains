@@ -14,8 +14,8 @@ StartCanvasRotateAngle(); //starting angle of view
 
 //I get latitude and longitude
 navigator.geolocation.getCurrentPosition(function(position) {
-	MyPosition.lat = position.coords.latitude;
-	MyPosition.lng = position.coords.longitude;
+	MyPosition.lat = position.coords.latitude / 180 * Math.PI;
+	MyPosition.lng = position.coords.longitude / 180 * Math.PI;
 });
 
 function throttle(callback, delay) {
@@ -71,26 +71,26 @@ if ('ondeviceorientationabsolute' in window) {
 }
 
 function angleComparison(az) {
-
+	//Compare azimuth to mountain and current azimuth.
 	descriptionMountainEl.name.textContent = '_____';
 	descriptionMountainEl.contentInDescription.textContent = '_____';
 	descriptionMountainEl.nameInDescription.textContent = '_____';
 
-	for (let f = 0; f < MXYND.length; f++) {
-		if (Math.abs(az - getAngle(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng)) < viewingAngle) {
+	for (let f = 0; f < dataMountains.length; f++) {
+		if (Math.abs(az - getAzimuthToMountain(MyPosition.lat, MyPosition.lng, dataMountains[f].lat, dataMountains[f].lng)) < viewingAngle) {
 			if (lookMountain) {
-				if (distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng) < distanceMountain) {
-					distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng);
-					descriptionMountainEl.name.textContent = MXYND[f].name;
-					descriptionMountainEl.contentInDescription.textContent = MXYND[f].description;
-					descriptionMountainEl.nameInDescription.textContent = MXYND[f].name;
+				if (distanceComparison(MyPosition.lat, MyPosition.lng, dataMountains[f].lat, dataMountains[f].lng) < distanceMountain) {
+					distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, dataMountains[f].lat, dataMountains[f].lng);
+					descriptionMountainEl.name.textContent = dataMountains[f].name;
+					descriptionMountainEl.contentInDescription.textContent = dataMountains[f].description;
+					descriptionMountainEl.nameInDescription.textContent = dataMountains[f].name;
 				}
 			} else {
-				descriptionMountainEl.name.textContent = MXYND[f].name;
-				descriptionMountainEl.contentInDescription.textContent = MXYND[f].description;
-				descriptionMountainEl.nameInDescription.textContent = MXYND[f].name;
+				descriptionMountainEl.name.textContent = dataMountains[f].name;
+				descriptionMountainEl.contentInDescription.textContent = dataMountains[f].description;
+				descriptionMountainEl.nameInDescription.textContent = dataMountains[f].name;
 				lookMountain = true;
-				distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, MXYND[f].lat, MXYND[f].lng);
+				distanceMountain = distanceComparison(MyPosition.lat, MyPosition.lng, dataMountains[f].lat, dataMountains[f].lng);
 			}
 		} else {
 			lookMountain = false;
@@ -99,11 +99,9 @@ function angleComparison(az) {
 	}
 }
 
-function distanceComparison(lat1, lng1, lat2, lng2) {
+function distanceComparison(f1, l1, lat2, lng2) {
 
-	let f1 = lat1 / 180 * Math.PI;
 	let f2 = lat2 / 180 * Math.PI;
-	let l1 = lng1 / 180 * Math.PI;
 	let l2 = lng2 / 180 * Math.PI;
 
 	let a = Math.pow(Math.sin((f2 - f1) / 2), 2) + Math.cos(f1) * Math.cos(f2) * Math.pow(Math.sin((l2 - l1) / 2), 2);
@@ -113,12 +111,10 @@ function distanceComparison(lat1, lng1, lat2, lng2) {
 }
 
 //checks what mountain i look at
-function getAngle(lat1, lng1, lat2, lng2) {
+function getAzimuthToMountain(f1, l1, lat2, lng2) {
 	let azimuth;
 
-	let f1 = lat1 / 180 * Math.PI;
 	let f2 = lat2 / 180 * Math.PI;
-	let l1 = lng1 / 180 * Math.PI;
 	let l2 = lng2 / 180 * Math.PI;
 
 	azimuth = (Math.atan2((Math.sin(l2 - l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2) * Math.cos(l2 - l1))));
@@ -144,10 +140,6 @@ function StartCanvasRotateAngle() {
 	let a = 5 * Math.PI / 180;
 	let radrot = settingEl.canvas.height - (settingEl.canvas.height / 100) * 10;
 
-	if (radrot * 2 > settingEl.canvas.width) {
-		radrot = settingEl.canvas.width - (settingEl.canvas.width / 100) * 10;
-	}
-
 	let xCStart = settingEl.canvas.width / 2;
 	let yCStart = settingEl.canvas.height;
 
@@ -168,10 +160,6 @@ settingEl.range.angle.oninput = function(e) {
 	viewingAngle = e.target.value / 2;
 	let a = e.target.value / 2 * Math.PI / 180;
 	let radrot = settingEl.canvas.height - (settingEl.canvas.height / 100) * 10;
-
-	if (radrot * 2 > settingEl.canvas.width) {
-		radrot = settingEl.canvas.width - (settingEl.canvas.width / 100) * 10;
-	}
 
 	let xCStart = settingEl.canvas.width / 2;
 	let yCStart = settingEl.canvas.height;

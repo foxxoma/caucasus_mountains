@@ -1,4 +1,4 @@
-let MXYND =
+let dataMountains =
 	[{
 			name: "Fethuz",
 			description: "The mountain range of Fethus stretches from east to west.The height of the mountain reaches 1745 m Located 10 kilometers south of the city of Vladikavkaz. It refers to the large peaks of the pasture range. The translation of the name, perhaps, means - bow, because of its long, curved look. Several routes lead to the summit.",
