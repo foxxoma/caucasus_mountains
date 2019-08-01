@@ -107,7 +107,7 @@ function getDistanceBetweenObjectsn(lat1, lng1, lat2, lng2) {
 
 	const a = Math.pow(Math.sin((f2 - f1) / 2), 2) + Math.cos(f1) * Math.cos(f2) * Math.pow(Math.sin((l2 - l1) / 2), 2);
 	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-	const d = 6371 * c;
+	const d = 6371 * c; //equator 6371
 	return d;
 }
 
