@@ -82,11 +82,9 @@ function mountainInFrontOfMe(az) {
 				lookMountain = true;
 				distanceMountain = getDistanceBetweenObjectsn(MyPosition.lat, MyPosition.lng, dataMountains[f].lat, dataMountains[f].lng);
 			}
-		} else {
-			lookMountain = false;
-			distanceMountain = 0;
 		}
 	}
+	lookMountain = false;
 }
 function getDistanceBetweenObjectsn(lat1, lng1, lat2, lng2) {
 	const f1 = lat1 / 180 * Math.PI;
