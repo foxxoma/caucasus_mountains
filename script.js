@@ -108,7 +108,7 @@ function getAngleBetweenObjects(lat1, lng1, lat2, lng2) {
 	const f2 = lat2 / 180 * Math.PI;
 	const l2 = lng2 / 180 * Math.PI;
 
-	angle = (Math.atan2((Math.sin(l2 - l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2) * Math.cos(l2 - l1))));
+	angle = Math.atan2((Math.sin(l2 - l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2) * Math.cos(l2 - l1)));
 	angle = angle / Math.PI * 180;
 
 	if (angle < 0) {
