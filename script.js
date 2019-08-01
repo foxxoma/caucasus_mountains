@@ -1,23 +1,17 @@
 const video = document.getElementById('video');
-
 const ctx = settingEl.canvas.getContext('2d');
-
 let front = false;
 let descriptionClick = 0;
 let settingClick = 0;
 let viewingAngle = 10;
-
 let lookMountain = false;
 let distanceMountain;
-
 StartCanvasRotateAngle(); //starting angle of view
-
 //I get latitude and longitude
 navigator.geolocation.getCurrentPosition(function(position) {
 	MyPosition.lat = position.coords.latitude;
 	MyPosition.lng = position.coords.longitude;
 });
-
 function throttle(callback, delay) {
 	let params = null;
 	let timeout = null;
@@ -35,7 +29,6 @@ function throttle(callback, delay) {
 		}
 	}
 }
-
 // Get access to the camera!
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 	let myConstraints = {
@@ -50,7 +43,6 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 		video.play();
 	});
 }
-
 //getting azimuth
 if ('ondeviceorientationabsolute' in window) {
 	window.ondeviceorientationabsolute = throttle((event) => {
@@ -58,7 +50,6 @@ if ('ondeviceorientationabsolute' in window) {
 		let cornerAz = 360 - event.alpha;
 		mountainInFrontOfMe(cornerAz);
 	}, 30);
-
 } else if ('ondeviceorientation' in window) {
 	window.ondeviceorientationabsolute = throttle((event) => {
 		// Check how far the user has scrolled
@@ -69,7 +60,6 @@ if ('ondeviceorientationabsolute' in window) {
 } else {
 	alert("error");
 }
-
 function mountainInFrontOfMe(az) {
 	//Compare azimuth to mountain and current azimuth.
 	descriptionMountainEl.name.textContent = '_____';
@@ -98,7 +88,6 @@ function mountainInFrontOfMe(az) {
 		}
 	}
 }
-
 function getDistanceBetweenObjectsn(lat1, lng1, lat2, lng2) {
 	const f1 = lat1 / 180 * Math.PI;
 	const l1 = lng1 / 180 * Math.PI;
@@ -110,7 +99,6 @@ function getDistanceBetweenObjectsn(lat1, lng1, lat2, lng2) {
 	const d = 6371 * c; //equator 6371
 	return d;
 }
-
 //checks what mountain i look at
 function getAngleBetweenObjects(lat1, lng1, lat2, lng2) {
 	let angle;
@@ -130,13 +118,11 @@ function getAngleBetweenObjects(lat1, lng1, lat2, lng2) {
 	//degree check with upside down screen 
 	if (window.orientation == 90 || window.orientation == -90) {
 		angle = angle - 90;
-		if (angle< 0) {
+		if (angle < 0) {
 			angle = 360 - angle;
 		}
 	}
-
 	return angle;
-
 }
 
 function StartCanvasRotateAngle() {
@@ -158,7 +144,6 @@ function StartCanvasRotateAngle() {
 	ctx.lineTo(xCStart + Math.sin(a) * radrot, yCStart - Math.cos(a) * radrot);
 	ctx.stroke();
 }
-
 settingEl.range.angle.oninput = function(e) {
 	viewingAngle = e.target.value / 2;
 	const a = e.target.value / 2 * Math.PI / 180;
@@ -179,12 +164,10 @@ settingEl.range.angle.oninput = function(e) {
 	ctx.lineTo(xCStart + Math.sin(a) * radrot, yCStart - Math.cos(a) * radrot);
 	ctx.stroke();
 }
-
 settingEl.range.fontSize.oninput = function(e) {
 	settingEl.body.style.fontSize = e.target.value + 'px';
 	descriptionMountainEl.contentInDescription.style.fontSize = e.target.value + 'px';
 };
-
 settingEl.icon.addEventListener('click', function(e) {
 	if (settingClick == 0) {
 		settingEl.interfase.style.display = "block";
@@ -194,7 +177,6 @@ settingEl.icon.addEventListener('click', function(e) {
 		settingClick = 0;
 	}
 });
-
 //open and close description
 descriptionMountainEl.icon.addEventListener('click', function(e) {
 	if (descriptionClick == 0) {
