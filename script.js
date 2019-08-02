@@ -67,10 +67,10 @@ function mountainInFrontOfMe(az) {
 	descriptionMountainEl.nameInDescription.textContent = '_____';
 
 	for (let f = 0; f < dataMountains.length; f++) {
-		if (Math.abs(az - getAngleBetweenObjects(MyPosition.lat, MyPosition.lng, dataMountains[f].lat, dataMountains[f].lng)) < viewingAngle) {
+		if (Math.abs(az - getAngleBetweenObjects(MyPosition, dataMountains[f])) < viewingAngle) {
 			if (lookMountain) {
-				if (getDistanceBetweenObjectsn(MyPosition.lat, MyPosition.lng, dataMountains[f].lat, dataMountains[f].lng) < distanceMountain) {
-					distanceMountain = getDistanceBetweenObjectsn(MyPosition.lat, MyPosition.lng, dataMountains[f].lat, dataMountains[f].lng);
+				if (getDistanceBetweenObjectsn(MyPosition, dataMountains[f]) < distanceMountain) {
+					distanceMountain = getDistanceBetweenObjectsn(MyPosition, dataMountains[f]);
 					descriptionMountainEl.name.textContent = dataMountains[f].name;
 					descriptionMountainEl.contentInDescription.textContent = dataMountains[f].description;
 					descriptionMountainEl.nameInDescription.textContent = dataMountains[f].name;
@@ -80,17 +80,17 @@ function mountainInFrontOfMe(az) {
 				descriptionMountainEl.contentInDescription.textContent = dataMountains[f].description;
 				descriptionMountainEl.nameInDescription.textContent = dataMountains[f].name;
 				lookMountain = true;
-				distanceMountain = getDistanceBetweenObjectsn(MyPosition.lat, MyPosition.lng, dataMountains[f].lat, dataMountains[f].lng);
+				distanceMountain = getDistanceBetweenObjectsn(MyPosition, dataMountains[f]);
 			}
 		}
 	}
 	lookMountain = false;
 }
-function getDistanceBetweenObjectsn(lat1, lng1, lat2, lng2) {
-	const f1 = lat1 / 180 * Math.PI;
-	const l1 = lng1 / 180 * Math.PI;
-	const f2 = lat2 / 180 * Math.PI;
-	const l2 = lng2 / 180 * Math.PI;
+function getDistanceBetweenObjectsn(myPosition, mountainPosition) {
+	const f1 = myPosition.lat / 180 * Math.PI;
+	const l1 = myPosition.lng/ 180 * Math.PI;
+	const f2 = mountainPosition.lat / 180 * Math.PI;
+	const l2 = mountainPosition.lng / 180 * Math.PI;
 
 	const a = Math.pow(Math.sin((f2 - f1) / 2), 2) + Math.cos(f1) * Math.cos(f2) * Math.pow(Math.sin((l2 - l1) / 2), 2);
 	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
@@ -98,13 +98,13 @@ function getDistanceBetweenObjectsn(lat1, lng1, lat2, lng2) {
 	return d;
 }
 //checks what mountain i look at
-function getAngleBetweenObjects(lat1, lng1, lat2, lng2) {
+function getAngleBetweenObjects(myPosition, mountainPosition) {
 	let angle;
 
-	const f1 = lat1 / 180 * Math.PI;
-	const l1 = lng1 / 180 * Math.PI;
-	const f2 = lat2 / 180 * Math.PI;
-	const l2 = lng2 / 180 * Math.PI;
+	const f1 = myPosition.lat / 180 * Math.PI;
+	const l1 = myPosition.lng/ 180 * Math.PI;
+	const f2 = mountainPosition.lat / 180 * Math.PI;
+	const l2 = mountainPosition.lng / 180 * Math.PI;
 
 	angle = Math.atan2((Math.sin(l2 - l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2) * Math.cos(l2 - l1)));
 	angle = angle / Math.PI * 180;
