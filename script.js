@@ -62,7 +62,7 @@ if ('ondeviceorientationabsolute' in window) {
 
 function mountainInFrontOfMe(az) {
 	//Compare azimuth to mountain and current azimuth.
-	let distanceMountain = null;
+	let distanceMountain;
 	let finalMountain;
 	for (let dataMountain of dataMountains) {
 		if (Math.abs(az - getAngleBetweenObjects(MyPosition, dataMountain)) < viewingAngle) {
