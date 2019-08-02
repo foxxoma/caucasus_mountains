@@ -4,14 +4,13 @@ let front = false;
 let descriptionClick = 0;
 let settingClick = 0;
 let viewingAngle = 10;
-let lookMountain = false;
-let distanceMountain;
 StartCanvasRotateAngle(); //starting angle of view
 //I get latitude and longitude
 navigator.geolocation.getCurrentPosition(function(position) {
 	MyPosition.lat = position.coords.latitude;
 	MyPosition.lng = position.coords.longitude;
 });
+
 function throttle(callback, delay) {
 	let params = null;
 	let timeout = null;
@@ -60,35 +59,42 @@ if ('ondeviceorientationabsolute' in window) {
 } else {
 	alert("error");
 }
+
 function mountainInFrontOfMe(az) {
 	//Compare azimuth to mountain and current azimuth.
-	descriptionMountainEl.name.textContent = '_____';
-	descriptionMountainEl.contentInDescription.textContent = '_____';
-	descriptionMountainEl.nameInDescription.textContent = '_____';
-
-	for (let f = 0; f < dataMountains.length; f++) {
-		if (Math.abs(az - getAngleBetweenObjects(MyPosition, dataMountains[f])) < viewingAngle) {
-			if (lookMountain) {
-				if (getDistanceBetweenObjectsn(MyPosition, dataMountains[f]) < distanceMountain) {
-					distanceMountain = getDistanceBetweenObjectsn(MyPosition, dataMountains[f]);
-					descriptionMountainEl.name.textContent = dataMountains[f].name;
-					descriptionMountainEl.contentInDescription.textContent = dataMountains[f].description;
-					descriptionMountainEl.nameInDescription.textContent = dataMountains[f].name;
+	let distanceMountain = null;
+	let finalMountain;
+	for (let dataMountain of dataMountains) {
+		if (Math.abs(az - getAngleBetweenObjects(MyPosition, dataMountain)) < viewingAngle) {
+			if (distanceMountain) {
+				if (getDistanceBetweenObjectsn(MyPosition, dataMountain) < distanceMountain) {
+					distanceMountain = getDistanceBetweenObjectsn(MyPosition, dataMountain);
+					finalMountain = dataMountain;
 				}
 			} else {
-				descriptionMountainEl.name.textContent = dataMountains[f].name;
-				descriptionMountainEl.contentInDescription.textContent = dataMountains[f].description;
-				descriptionMountainEl.nameInDescription.textContent = dataMountains[f].name;
-				lookMountain = true;
-				distanceMountain = getDistanceBetweenObjectsn(MyPosition, dataMountains[f]);
+				finalMountain = dataMountain;
+				distanceMountain = getDistanceBetweenObjectsn(MyPosition, dataMountain);
 			}
 		}
 	}
-	lookMountain = false;
+	displayInformationAboutMountain(finalMountain);
 }
+
+function displayInformationAboutMountain(dataMountain) {
+	if (dataMountain) {
+		descriptionMountainEl.name.textContent = dataMountain.name;
+		descriptionMountainEl.contentInDescription.textContent = dataMountain.description;
+		descriptionMountainEl.nameInDescription.textContent = dataMountain.name;
+	} else {
+		descriptionMountainEl.name.textContent = '_____';
+		descriptionMountainEl.contentInDescription.textContent = '_____';
+		descriptionMountainEl.nameInDescription.textContent = '_____';
+	}
+}
+
 function getDistanceBetweenObjectsn(myPosition, mountainPosition) {
 	const f1 = myPosition.lat / 180 * Math.PI;
-	const l1 = myPosition.lng/ 180 * Math.PI;
+	const l1 = myPosition.lng / 180 * Math.PI;
 	const f2 = mountainPosition.lat / 180 * Math.PI;
 	const l2 = mountainPosition.lng / 180 * Math.PI;
 
@@ -102,7 +108,7 @@ function getAngleBetweenObjects(myPosition, mountainPosition) {
 	let angle;
 
 	const f1 = myPosition.lat / 180 * Math.PI;
-	const l1 = myPosition.lng/ 180 * Math.PI;
+	const l1 = myPosition.lng / 180 * Math.PI;
 	const f2 = mountainPosition.lat / 180 * Math.PI;
 	const l2 = mountainPosition.lng / 180 * Math.PI;
 
