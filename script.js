@@ -9,6 +9,10 @@ StartCanvasRotateAngle(); //starting angle of view
 navigator.geolocation.getCurrentPosition(function(position) {
 	MyPosition.lat = position.coords.latitude;
 	MyPosition.lng = position.coords.longitude;
+}, function(error) {
+	if (error.PERMISSION_DENIED) {
+		alert("Browser doesn't support geolocation");
+	}
 });
 
 function throttle(callback, delay) {
@@ -57,7 +61,7 @@ if ('ondeviceorientationabsolute' in window) {
 	}, 30);
 
 } else {
-	alert("error");
+	alert("Browser doesn't support device orientation");
 }
 
 function mountainInFrontOfMe(az) {
@@ -115,7 +119,7 @@ function getAngleBetweenObjects(myPosition, mountainPosition) {
 	angle = Math.atan2((Math.sin(l2 - l1) * Math.cos(f2)), (Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2) * Math.cos(l2 - l1)));
 	angle = angle / Math.PI * 180;
 
-	angle =  ( (angle+360) % 360);
+	angle = ((angle + 360) % 360);
 
 	//degree check with upside down screen 
 	if (window.orientation == 90 || window.orientation == -90) {
