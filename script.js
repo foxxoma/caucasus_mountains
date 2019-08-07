@@ -40,10 +40,14 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 		}
 	};
 	// Not adding `{ audio: true }` since we only want video now
-	navigator.mediaDevices.getUserMedia(myConstraints).then(function(stream) {
+	navigator.mediaDevices.getUserMedia(myConstraints)
+	.then(function(stream) {
 		//video.src = window.URL.createObjectURL(stream);
 		video.srcObject = stream;
 		video.play();
+	})
+	.catch(function(err) {
+  	alert('vidio error');
 	});
 }
 //getting azimuth
