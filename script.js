@@ -1,5 +1,6 @@
 const video = document.getElementById('video');
 const ctx = settingEl.canvas.getContext('2d');
+const error = document.getElementById('error');
 let front = false;
 let descriptionClick = 0;
 let settingClick = 0;
@@ -9,9 +10,11 @@ StartCanvasRotateAngle(); //starting angle of view
 navigator.geolocation.getCurrentPosition(function(position) {
 	MyPosition.lat = position.coords.latitude;
 	MyPosition.lng = position.coords.longitude;
+	error.style.display = "none";
 }, function(error) {
 	if (error.PERMISSION_DENIED) {
-		alert("Browser doesn't support geolocation");
+		//alert("Browser doesn't support geolocation");
+		error.style.display = "block";
 	}
 });
 
@@ -45,9 +48,11 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 		//video.src = window.URL.createObjectURL(stream);
 		video.srcObject = stream;
 		video.play();
+		error.style.display = "none";
 	})
 	.catch(function(err) {
-  	alert('vidio error');
+  	//alert('vidio error');
+  	error.style.display = "block";
 	});
 }
 //getting azimuth
@@ -56,16 +61,19 @@ if ('ondeviceorientationabsolute' in window) {
 		// Check how far the user has scrolled
 		let cornerAz = 360 - event.alpha;
 		mountainInFrontOfMe(cornerAz);
+		error.style.display = "none";
 	}, 30);
 } else if ('ondeviceorientation' in window) {
 	window.ondeviceorientationabsolute = throttle((event) => {
 		// Check how far the user has scrolled
 		let cornerAz = 360 - event.alpha;
 		mountainInFrontOfMe(cornerAz);
+		error.style.display = "none";
 	}, 30);
 
 } else {
-	alert("Browser doesn't support device orientation");
+	//alert("Browser doesn't support device orientation");
+	error.style.display = "block";
 }
 
 function mountainInFrontOfMe(az) {
