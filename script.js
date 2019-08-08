@@ -10,7 +10,6 @@ StartCanvasRotateAngle(); //starting angle of view
 navigator.geolocation.getCurrentPosition(function(position) {
 	MyPosition.lat = position.coords.latitude;
 	MyPosition.lng = position.coords.longitude;
-	error.style.display = "none";
 }, function(error) {
 	if (error.PERMISSION_DENIED) {
 		//alert("Browser doesn't support geolocation");
@@ -44,16 +43,15 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 	};
 	// Not adding `{ audio: true }` since we only want video now
 	navigator.mediaDevices.getUserMedia(myConstraints)
-	.then(function(stream) {
-		//video.src = window.URL.createObjectURL(stream);
-		video.srcObject = stream;
-		video.play();
-		error.style.display = "none";
-	})
-	.catch(function(err) {
-  	//alert('vidio error');
-  	error.style.display = "block";
-	});
+		.then(function(stream) {
+			//video.src = window.URL.createObjectURL(stream);
+			video.srcObject = stream;
+			video.play();
+		})
+		.catch(function(err) {
+			//alert('vidio error');
+			error.style.display = "block";
+		});
 }
 //getting azimuth
 if ('ondeviceorientationabsolute' in window) {
@@ -61,14 +59,12 @@ if ('ondeviceorientationabsolute' in window) {
 		// Check how far the user has scrolled
 		let cornerAz = 360 - event.alpha;
 		mountainInFrontOfMe(cornerAz);
-		error.style.display = "none";
 	}, 30);
 } else if ('ondeviceorientation' in window) {
 	window.ondeviceorientationabsolute = throttle((event) => {
 		// Check how far the user has scrolled
 		let cornerAz = 360 - event.alpha;
 		mountainInFrontOfMe(cornerAz);
-		error.style.display = "none";
 	}, 30);
 
 } else {
@@ -204,4 +200,7 @@ descriptionMountainEl.icon.addEventListener('click', function(e) {
 		descriptionMountainEl.description.style.display = "none";
 		descriptionClick = 0;
 	}
+});
+error.addEventListener('click', function(e) {
+	error.style.display = 'none';
 });
