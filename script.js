@@ -1,6 +1,6 @@
 const video = document.getElementById('video');
 const ctx = settingEl.canvas.getContext('2d');
-const error = document.getElementById('error');
+const errorAPI = document.getElementById('error');
 let front = false;
 let descriptionClick = 0;
 let settingClick = 0;
@@ -13,7 +13,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
 }, function(error) {
 	if (error.PERMISSION_DENIED) {
 		//alert("Browser doesn't support geolocation");
-		error.style.display = "block";
+		errorAPI.style.display = "block";
 	}
 });
 
@@ -50,7 +50,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 		})
 		.catch(function(err) {
 			//alert('vidio error');
-			error.style.display = "block";
+			errorAPI.style.display = "block";
 		});
 }
 //getting azimuth
@@ -69,7 +69,7 @@ if ('ondeviceorientationabsolute' in window) {
 
 } else {
 	//alert("Browser doesn't support device orientation");
-	error.style.display = "block";
+	errorAPI.style.display = "block";
 }
 
 function mountainInFrontOfMe(az) {
@@ -202,5 +202,5 @@ descriptionMountainEl.icon.addEventListener('click', function(e) {
 	}
 });
 error.addEventListener('click', function(e) {
-	error.style.display = 'none';
+	errorAPI.style.display = 'none';
 });
