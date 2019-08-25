@@ -70,6 +70,11 @@ let dataMountains =
 		description: "The height of the mountain reaches 4636 m. Russia, Republic of North Ossetia-Alania",
 		lat: 42.859190,
 		lng: 44.479466
+	}, {
+		name: "Dashtsar",
+		description: "The height of the mountain reaches 2919 m. Russia, Republic of North Ossetia-Alania",
+		lat: 42.8519777708175,
+		lng: 44.2314801080352
 	}]
 
 let descriptionMountainEl = {
